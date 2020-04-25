@@ -1,0 +1,10 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/shop_user?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
