@@ -19,8 +19,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 @Configuration
-@EnableScheduling
-@EnableAsync
+//@EnableScheduling
+//@EnableAsync
 public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer{
 	
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
