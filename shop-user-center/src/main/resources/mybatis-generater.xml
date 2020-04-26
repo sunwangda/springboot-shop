@@ -3,8 +3,9 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+
     <classPathEntry
-            location="E:\workspaceown\rep\mysql\mysql-connector-java\8.0.19\mysql-connector-java-8.0.19.jar"/>
+            location="D:\work\eclipse\workspace01\rep\mysql\mysql-connector-java\8.0.19\mysql-connector-java-8.0.19.jar"/>
     <context id="MySQLTables" targetRuntime="MyBatis3">
         <property name="xmlFormatter"
                   value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
@@ -17,7 +18,7 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhotst:3306/shop_user?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://localhost:3306/shop_user?serverTimezone=UTC"
                         userId="root" password="123456">
         </jdbcConnection>
 
