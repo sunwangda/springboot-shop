@@ -1,5 +1,7 @@
 package com.shop.user.center.service;
 
-public class LoginService {
-
+public interface LoginService {
+	
+	Integer checkAdminLogin(String admin, String password);
+	
 }
