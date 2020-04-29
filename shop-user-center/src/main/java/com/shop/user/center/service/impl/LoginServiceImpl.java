@@ -11,6 +11,7 @@ import com.shop.user.center.dao.AdminLoginMapper;
 import com.shop.user.center.model.AdminLogin;
 import com.shop.user.center.model.AdminLoginExample;
 import com.shop.user.center.service.LoginService;
+import com.shop.user.center.service.ex.UserNotFoundException;
 
 @Service
 public class LoginServiceImpl implements LoginService{
@@ -19,14 +20,14 @@ public class LoginServiceImpl implements LoginService{
 	private AdminLoginMapper adminLoginMapper;
 	
 	@Override
-	public Integer checkAdminLogin(String admin, String password) {
+	public AdminLogin loginService(String admin, String password) {
 		List<AdminLogin> login = new ArrayList<AdminLogin>();
 		AdminLoginExample example = new AdminLoginExample();
-		example.createCriteria().andAdminEqualTo(admin).andPasswordEqualTo(password);
+		example.createCriteria().andAdminEqualTo(admin);
 		login = adminLoginMapper.selectByExample(example);
 		if(CollectionUtils.isEmpty(login)) {
-			return 0;
+			throw new UserNotFoundException("用户数据不存在");
 		}
-		return 1;
+		return login.get(0);
 	}
 }
