@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.shop.user.center.controller.ex.ControllerException;
 import com.shop.user.center.service.ex.ServiceException;
 import com.shop.user.center.utils.JsonResult;
 
@@ -38,7 +39,7 @@ public abstract class BaseController {
 		return session.getAttribute("username").toString();
 	}
 	
-	@ExceptionHandler({ServiceException.class})
+	@ExceptionHandler({ServiceException.class,ControllerException.class})
 	public JsonResult<Void> handleException(Throwable ex) {
 		
 		// 创建响应结果对象
@@ -51,6 +52,12 @@ public abstract class BaseController {
 		switch (exName) {
 		case "UserNotFoundException":
 			jsonResult.setState(4000);
+			break;
+		case "LoginTypeIsNotExistException":
+			jsonResult.setState(3001);
+			break;
+		case "RequestParamsIsNullException":
+			jsonResult.setState(3002);
 			break;
 		default:
 			break;

@@ -8,6 +8,17 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: select now()
+      idle-timeout: 600000
+      auto-commit: true
+      max-lifetime: 1200000
+      maximum-pool-size: 15
+      minimum-idle: 10
+      login-timeout: 5
+      validation-timeout: 5000
+      connection-timeout: 30000
+      read-only: false
 mybatis:
   mapper-locations:
     - mappers/*.xml

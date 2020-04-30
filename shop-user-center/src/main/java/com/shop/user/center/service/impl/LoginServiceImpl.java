@@ -21,13 +21,15 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public AdminLogin loginService(String admin, String password) {
-		List<AdminLogin> login = new ArrayList<AdminLogin>();
+		List<AdminLogin> logins = new ArrayList<AdminLogin>();
 		AdminLoginExample example = new AdminLoginExample();
 		example.createCriteria().andAdminEqualTo(admin);
-		login = adminLoginMapper.selectByExample(example);
-		if(CollectionUtils.isEmpty(login)) {
+		logins = adminLoginMapper.selectByExample(example);
+		if(CollectionUtils.isEmpty(logins)) {
 			throw new UserNotFoundException("用户数据不存在");
 		}
-		return login.get(0);
+		AdminLogin login = logins.get(0);
+		
+		return login;
 	}
 }

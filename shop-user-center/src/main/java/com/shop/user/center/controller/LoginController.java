@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.user.center.service.LoginService;
 import com.shop.user.center.utils.JsonResult;
+import com.shop.user.center.controller.ex.LoginTypeIsNotExistException;
+import com.shop.user.center.controller.ex.RequestParamsIsNullException;
 import com.shop.user.center.manual.model.LoginInfo;
 import com.shop.user.center.manual.model.LoginInfo.LoginTypeEnum;
 import com.shop.user.center.model.AdminLogin;
@@ -38,6 +40,12 @@ public class LoginController extends BaseController{
 		@ApiImplicitParam(paramType = "query", name = "password", value = "密码", required = false, type = "String")
 	})
 	public JsonResult<AdminLogin> Login(String loginType, String admin, String password) {
+		if(admin == null || password == null) {
+			throw new RequestParamsIsNullException("请求参数为null");
+		}
+		if(LoginTypeEnum.getLoginTypeEnum(loginType) == null) {
+			throw new LoginTypeIsNotExistException("登录方式不存在");
+		}
 		AdminLogin data = null;
 		if(LoginTypeEnum.ADMIN_LOGIN.equals(LoginTypeEnum.getLoginTypeEnum(loginType))) {
 			data = loginService.loginService(admin, password);
