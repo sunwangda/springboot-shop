@@ -1,10 +1,12 @@
 server:
   port: 8082
+  connection-timeout: 300000
 
 dubbo:
   registry:
-    address: 127.0.0.1:2181
+    address: 62.234.105.111:2181
     protocol: zookeeper
+    timeout: 300000
   application:
     name: shop-user-center
   protocol:
@@ -12,7 +14,7 @@ dubbo:
     port: 1909
   monitor:
     protocol: registry
-  
+    
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -35,7 +37,7 @@ spring:
       read-only: false
   redis:
     database: 0
-    host: localhost
+    host: 62.234.105.111
     port: 6379
     timeout: 10000
     jedis:
