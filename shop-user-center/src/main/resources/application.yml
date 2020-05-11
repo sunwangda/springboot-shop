@@ -1,12 +1,15 @@
 server:
   port: 8082
-  connection-timeout: 300000
+  connection-timeout: 600000
 
 dubbo:
   registry:
-    address: 62.234.105.111:2181
+    address: zookeeper://62.234.105.111:2181
     protocol: zookeeper
     timeout: 300000
+    check: false
+  metadata-report:
+    address: zookeeper://62.234.105.111:2181
   application:
     name: shop-user-center
   protocol:

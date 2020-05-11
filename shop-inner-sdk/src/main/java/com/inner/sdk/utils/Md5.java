@@ -1,4 +1,4 @@
-package user.utils;
+package com.inner.sdk.utils;
 
 import org.springframework.util.DigestUtils;
 

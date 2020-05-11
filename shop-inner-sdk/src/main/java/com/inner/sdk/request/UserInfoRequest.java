@@ -1,4 +1,4 @@
-package user.request;
+package com.inner.sdk.request;
 
 import io.swagger.annotations.ApiModelProperty;
 

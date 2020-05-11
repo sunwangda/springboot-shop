@@ -1,4 +1,4 @@
-package user.model;
+package com.inner.sdk.model;
 
 import java.io.Serializable;
 

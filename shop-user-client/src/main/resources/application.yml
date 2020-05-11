@@ -1,13 +1,13 @@
 server:
   port: 18082
-  connection-timeout: 300000
+  connection-timeout: 600000
 
 dubbo:
   application:
     name: shop-user-client
   registry:
     address: zookeeper://62.234.105.111:2181
-    timeout: 300000
+    timeout: 600000
   monitor:
     protocol: registry
   
@@ -35,7 +35,7 @@ spring:
     database: 0
     host: 62.234.105.111
     port: 6379
-    timeout: 300000
+    timeout: 600000
     jedis:
       pool:
         max-active: 16

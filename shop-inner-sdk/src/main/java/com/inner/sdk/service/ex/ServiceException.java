@@ -1,4 +1,4 @@
-package user.service.ex;
+package com.inner.sdk.service.ex;
 
 /**
  * 业务异常，是所有业务层抛出的异常的基类

@@ -1,4 +1,4 @@
-package user.utils;
+package com.inner.sdk.utils;
 
 /**
  * 表示控制器响应的操作结果

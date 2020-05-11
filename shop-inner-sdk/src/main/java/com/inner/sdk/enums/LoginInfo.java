@@ -1,4 +1,4 @@
-package user.enums;
+package com.inner.sdk.enums;
 
 import java.io.Serializable;
 

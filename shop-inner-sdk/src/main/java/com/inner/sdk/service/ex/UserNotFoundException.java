@@ -1,4 +1,4 @@
-package user.service.ex;
+package com.inner.sdk.service.ex;
 
 /**
  * 用户数据不存在

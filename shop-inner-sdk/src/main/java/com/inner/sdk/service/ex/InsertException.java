@@ -1,4 +1,4 @@
-package user.service.ex;
+package com.inner.sdk.service.ex;
 
 /**
  * 插入数据异常

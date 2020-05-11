@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.inner.sdk.enums.LoginInfo.LoginTypeEnum;
+import com.inner.sdk.model.UserInfo;
+import com.inner.sdk.request.UserInfoRequest;
+import com.inner.sdk.service.UserService;
+import com.inner.sdk.utils.JsonResult;
 import com.shop.user.client.controller.ex.LoginTypeIsNotExistException;
 import com.shop.user.client.controller.ex.RequestParamsIsNullException;
 
@@ -23,11 +28,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import user.enums.LoginInfo.LoginTypeEnum;
-import user.model.UserInfo;
-import user.request.UserInfoRequest;
-import user.service.UserService;
-import user.utils.JsonResult;
 
 @RestController
 @RequestMapping(value = "user")

@@ -10,18 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import com.inner.sdk.model.UserInfo;
+import com.inner.sdk.request.UserInfoRequest;
+import com.inner.sdk.service.UserService;
+import com.inner.sdk.service.ex.AdminDuplicationException;
+import com.inner.sdk.service.ex.InsertException;
+import com.inner.sdk.service.ex.PasswordNotMatchException;
+import com.inner.sdk.service.ex.UserNotFoundException;
+import com.inner.sdk.utils.Md5;
 import com.shop.user.center.dao.AdminLoginMapper;
 import com.shop.user.center.model.AdminLogin;
 import com.shop.user.center.model.AdminLoginExample;
 
-import user.model.UserInfo;
-import user.request.UserInfoRequest;
-import user.service.UserService;
-import user.service.ex.AdminDuplicationException;
-import user.service.ex.InsertException;
-import user.service.ex.PasswordNotMatchException;
-import user.service.ex.UserNotFoundException;
-import user.utils.Md5;
+
 
 @Service
 @Component

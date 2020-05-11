@@ -1,7 +1,7 @@
-package user.service;
+package com.inner.sdk.service;
 
-import user.model.UserInfo;
-import user.request.UserInfoRequest;
+import com.inner.sdk.model.UserInfo;
+import com.inner.sdk.request.UserInfoRequest;
 
 /**
  * 处理用户登录业务层接口
