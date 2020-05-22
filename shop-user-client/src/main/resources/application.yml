@@ -40,16 +40,16 @@ spring:
       pool:
         max-active: 16
         max-idle: 4 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: sunwangda
-    password: Swd123456789
-    #虚拟host 可以不设置,使用server默认host
-    virtual-host: swd
-    #消息确认配置项
+  #rabbitmq:
+  #  host: localhost
+  #  port: 5672
+  #  username: sunwangda
+  #  password: Swd123456789
+  #  #虚拟host 可以不设置,使用server默认host
+  #  virtual-host: swd
+  #  #消息确认配置项
  
-    #确认消息已发送到交换机(Exchange)
-    publisher-confirms: true
-    #确认消息已发送到队列(Queue)
-    publisher-returns: true
+  #  #确认消息已发送到交换机(Exchange)
+  #  publisher-confirms: true
+  #  #确认消息已发送到队列(Queue)
+  #  publisher-returns: true
