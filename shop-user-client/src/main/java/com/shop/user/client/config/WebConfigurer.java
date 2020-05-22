@@ -30,6 +30,9 @@ public class WebConfigurer extends WebMvcConfigurationSupport{
 		excludePath.add("/webjars/**");
 		excludePath.add("/swagger-resources/**");
 		excludePath.add("/user/login/**");
+		excludePath.add("/chat/**");
+		excludePath.add("/user/sendDirectMessage/**");
+		excludePath.add("/user/sendTopicMessage*/**");
 		registry.addInterceptor(authorityInterceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns(excludePath);
