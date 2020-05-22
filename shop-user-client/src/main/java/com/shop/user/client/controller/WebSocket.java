@@ -1,6 +1,8 @@
 package com.shop.user.client.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -125,6 +127,7 @@ public class WebSocket {
 			map1.put("messageType", 4);
 			map1.put("textMessage", textMessage);
 			map1.put("fromusername", fromusername);
+			map1.put("time", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 			if (tousername.equals("All")) {
 				map1.put("tousername", "所有人");
 				sendMessageAll(JSON.toJSONString(map1), fromusername);
