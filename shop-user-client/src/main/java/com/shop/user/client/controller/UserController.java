@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.dubbo.config.annotation.Reference;
@@ -28,6 +29,7 @@ import com.inner.sdk.enums.LoginInfo.LoginTypeEnum;
 import com.inner.sdk.model.UserInfo;
 import com.inner.sdk.request.UserInfoRequest;
 import com.inner.sdk.service.UserService;
+import com.inner.sdk.utils.IpAddress;
 import com.inner.sdk.utils.JsonResult;
 import com.shop.user.client.controller.ex.LoginTypeIsNotExistException;
 import com.shop.user.client.controller.ex.RequestParamsIsNullException;
@@ -177,6 +179,14 @@ public class UserController extends BaseController {
 	@RabbitHandler
 	public void TopicTotalReceiver(Map testMessage) {
 		System.out.println("DirectReceiver消费者收到消息  : " + testMessage.toString());
+	}
+	
+	@RequestMapping(value = "getAddressByIp", method = RequestMethod.POST)
+	@ApiOperation(value = "获取用户地址根据ip", notes = "获取用户地址根据ip")
+	public JsonResult getAddressByIp(HttpServletRequest request) {
+		String ip = IpAddress.getRemortIP(request);
+		String data = IpAddress.findOne("39.100.237.144");
+		return new JsonResult(SUCCESS, data);
 	}
 
 }

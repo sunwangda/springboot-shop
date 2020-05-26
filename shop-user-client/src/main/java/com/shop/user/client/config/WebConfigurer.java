@@ -33,6 +33,7 @@ public class WebConfigurer extends WebMvcConfigurationSupport{
 		excludePath.add("/chat/**");
 		excludePath.add("/user/sendDirectMessage/**");
 		excludePath.add("/user/sendTopicMessage*/**");
+		excludePath.add("/user/getAddressByIp/**");
 		registry.addInterceptor(authorityInterceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns(excludePath);
