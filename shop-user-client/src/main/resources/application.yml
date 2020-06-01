@@ -12,6 +12,19 @@ dubbo:
     protocol: registry
   
 spring:
+  #mail:
+   # host: smtp.163.com
+    #username: s17695748297@163.com
+    #password: OBIOLXHLVPXLPLBK
+    #default-encoding: utf-8
+    #port: 465
+    #properties:
+    #  mail.smtp.ssl.enable: true
+    #  mail.smtp.auth: true
+    #  mail.smtp.connectiontimeout: 50000
+    #  mail.smtp.timeout: 50000
+    #  mail.smtp.writetimeout: 50000
+    #  mail.smtp.starttls.enabl: true
   main:
     allow-bean-definition-overriding: true
   datasource:
@@ -40,16 +53,20 @@ spring:
       pool:
         max-active: 16
         max-idle: 4 
-  rabbitmq:
-    host: 39.100.237.144
-    port: 5672
-    username: guest
-    password: guest
-    #虚拟host 可以不设置,使用server默认host
-    virtual-host: /
-    #消息确认配置项
- 
-    #确认消息已发送到交换机(Exchange)
-    publisher-confirms: true
-    #确认消息已发送到队列(Queue)
-    publisher-returns: true
+ # rabbitmq:
+ #   host: 39.100.237.144
+ #   port: 5672
+ #   username: guest
+ #   password: guest
+ #   #虚拟host 可以不设置,使用server默认host
+ #   virtual-host: /
+ #   #消息确认配置项
+ #
+ #   #确认消息已发送到交换机(Exchange)
+ #   publisher-confirms: true
+ #   #确认消息已发送到队列(Queue)
+ #   publisher-returns: true
+ # data:
+ #   elasticsearch:
+ #     cluster-name: elasticsearch
+ #     cluster-nodes: 127.0.0.1:9300
