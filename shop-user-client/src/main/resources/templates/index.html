@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<p>发送信息：<input type="text" id="txt" ></input></p>
+<p>接收人：<input type="text" id="toUser" ></input></p>
+<p><button id="button" >发送消息</button></p>
+<p id="recvContent">
+
+</p>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script th:inline="javascript" >
+    var userUid=[[${userUid}]];
+    var imServerPort=[[${imServerPort}]];
+    <!-- ws客户端   -->
+    var socket;  
+    var wsUrl = "ws://localhost:"+imServerPort+"/websocket/"+userUid;
+    //避免重复连接
+    var lockReconnect = false;
+    var tt;
+    //创建websocket
+    createWebSocket();  
+    //发送信息回车键
+    $("#txt").keydown(function(event){ 
+        if(event.keyCode==13){ 
+            $("#button").click();
+        } 
+    }); 
+    //创建连接
+    function createWebSocket() {
+        try {
+            if(typeof(WebSocket) == "undefined") {  
+                console.log("您的浏览器不支持WebSocket");  
+            }else{
+                console.log("您的浏览器支持WebSocket");  
+            }
+            socket = new WebSocket(wsUrl);
+            //初始化
+            init();
+        } catch(e) {
+            console.log('catch');
+            //异常后重新连接
+            reconnect();
+        }
+    }
+    //初始化
+    function init() {
+        socket.onclose = function () {
+            console.log('链接关闭');
+            //关闭后重新连接
+            reconnect();
+        };
+        socket.onerror = function() {
+            console.log('发生异常了');
+            //出错后重新连接
+            reconnect();
+        };
+        socket.onopen = function () {
+            //心跳检测重置
+            heartCheck.start();
+        };
+        socket.onmessage = function (event) {
+            // 将json字符串转换为对象
+            var resData = JSON.parse(event.data);
+            console.log(resData);  
+            //好友列表初始化
+            if(resData!=undefined) {
+                $("#recvContent").append('<div style="width:300px;text-align:left;"><span >'+resData.fromUser + '发送：' + resData.content + '</span></div><br/>');
+            } 
+            heartCheck.start();
+        }
+    }
+    //重新连接
+    function reconnect() {
+      if(lockReconnect) {
+        return;
+      };
+      lockReconnect = true;
+      //没连接上会一直重连，设置延迟避免请求过多
+      tt && clearTimeout(tt);
+      tt = setTimeout(function () {
+        createWebSocket();
+        lockReconnect = false;
+      }, 4000);
+    }
+    //心跳检测
+    var heartCheck = {
+        timeout: 210000,
+        timeoutObj: null,
+        serverTimeoutObj: null,
+        start: function(){
+              console.log(getNowTime() +" Socket 心跳检测");  
+            var self = this;
+            this.timeoutObj && clearTimeout(this.timeoutObj);
+            this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
+            this.timeoutObj = setTimeout(function(){
+                //这里发送一个心跳，后端收到后，返回一个心跳消息，
+                //onmessage拿到返回的心跳就说明连接正常
+                console.log(getNowTime() +' Socket 连接重试');
+                //socket.send("连接成功");
+                self.serverTimeoutObj = setTimeout(function() {
+                    console.log(socket);
+                    socket.close();
+                }, self.timeout);
+            }, this.timeout)
+        }
+    }
+    //按钮点击事件
+    $("#button").click(function(){
+        var object={}
+        object.content = $("#txt").val();
+        object.toUser = $("#toUser").val();
+        object.fromUser= userUid;
+        $("#txt").val("");
+        $("#recvContent").append('<div style="width:300px;text-align:right;"><span >发送给'+object.toUser + '：' + object.content + '</span></div><br/>');
+        socket.send(JSON.stringify(object));
+    });
+    /**
+     * 获取系统当前时间
+     * @returns
+     */
+    function p(s) {
+        return s < 10 ? '0' + s : s;
+    }
+    function getNowTime() {
+        var myDate = new Date();
+        //获取当前年
+        var year = myDate.getFullYear();
+        //获取当前月
+        var month = myDate.getMonth() + 1;
+        //获取当前日
+        var date = myDate.getDate();
+        var h = myDate.getHours();       //获取当前小时数(0-23)
+        var m = myDate.getMinutes();     //获取当前分钟数(0-59)
+        var s = myDate.getSeconds();
+        return year + '-' + p(month) + "-" + p(date) + " " + p(h) + ':' + p(m) + ":" + p(s);
+    }
+</script>
+
+</body>
+</html>

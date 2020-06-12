@@ -31,6 +31,7 @@ public class WebConfigurer extends WebMvcConfigurationSupport{
 		excludePath.add("/swagger-resources/**");
 		excludePath.add("/user/login/**");
 		excludePath.add("/user/register/**");
+		excludePath.add("/user/index/**");
 //		excludePath.add("/chat/**");
 //		excludePath.add("/user/sendDirectMessage/**");
 //		excludePath.add("/user/sendTopicMessage*/**");

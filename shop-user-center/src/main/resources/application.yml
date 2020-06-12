@@ -6,7 +6,7 @@ dubbo:
   registry:
     address: zookeeper://62.234.105.111:2181
     protocol: zookeeper
-    timeout: 300000
+    timeout: 600000
     check: false
   metadata-report:
     address: zookeeper://62.234.105.111:2181
