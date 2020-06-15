@@ -113,8 +113,9 @@ public class NettyWebsocketServer {
         workGroup.shutdownGracefully();
     }
 
-    public static void main(String[] args) {
-        NettyWebsocketServer server = new NettyWebsocketServer();
-        server.start(7788);
-    }
+//    public static void main(String[] args) {
+//        NettyWebsocketServer server = new NettyWebsocketServer();
+//        System.out.println("看看main函数是否运行什么时候运行");
+//        server.start(7788);
+//    }
 }

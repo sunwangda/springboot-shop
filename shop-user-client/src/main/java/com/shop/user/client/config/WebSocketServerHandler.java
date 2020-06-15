@@ -49,6 +49,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>{
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         //http请求和tcp请求分开处理
+    	System.out.println("channelRead00000000000000000000000000000000000000000000");
         if(msg instanceof HttpRequest){
             handlerHttpRequest(ctx,(HttpRequest) msg);
         }else if(msg instanceof WebSocketFrame){
@@ -64,6 +65,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>{
      */
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+    	System.out.println("channelReadComplete+++++++++++++++++++++++++++++");
         ctx.flush();
     }
     
@@ -74,6 +76,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>{
      */
     private void handlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
         //判断是否是关闭链路的指令
+    	System.out.println("handlerWebSocketFrame+++++++++++++++++++++++++++++");
         if(frame instanceof CloseWebSocketFrame){
             log.info("【"+ctx.channel().remoteAddress()+"】已关闭（服务器端）");
             handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame);
@@ -118,6 +121,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>{
      */
     @SuppressWarnings("deprecation")
     private void handlerHttpRequest(ChannelHandlerContext ctx, HttpRequest req) {
+    	System.out.println("wetsocket第一次连接握手++++++++++++++++++++++++");
         String userUid = null;
         if (req.getMethod().toString().equals("GET")) {
             userUid = req.getUri().substring(req.getUri().indexOf("/", 2)+1);
@@ -193,6 +197,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>{
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    	System.out.println("exceptionCaught+++++++++++++");
         super.exceptionCaught(ctx, cause);
         //移除channel
         removeCannel((NioSocketChannel)ctx.channel());
